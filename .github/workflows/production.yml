@@ -36,6 +36,7 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
+    
     steps:
     - name: SSH and deploy node app
       uses: appleboy/ssh-action@master
