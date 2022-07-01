@@ -5,9 +5,9 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "staging" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "staging" ]
 
 jobs:
   build:
@@ -45,10 +45,10 @@ jobs:
         key: ${{ secrets.HOST_PRODUCTION_KEY}}
         port: ${{ secrets.HOST_PRODUCTION_PORT }}
         script: |
-          cd /home/services/gateway
-          git pull
+          cd /home/staging/gateway
+          git pull origin staging
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh 
-          npm install --production
-          npm run build:production
+          npm install
+          npm run build:staging
           pm2 restart vidiproject-apps
