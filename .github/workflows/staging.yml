@@ -51,4 +51,4 @@ jobs:
           source ~/.nvm/nvm.sh 
           npm install
           npm run build:staging
-          pm2 restart vidiproject-apps
+          pm2 restart vidiproject-apps-devs
