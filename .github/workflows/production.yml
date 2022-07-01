@@ -33,7 +33,7 @@ jobs:
       env:
         CI: true
 
-    deploy:
+  deploy:
     needs: [test]
     runs-on: ubuntu-latest
 
