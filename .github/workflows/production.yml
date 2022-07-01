@@ -36,7 +36,7 @@ jobs:
   deploy:
 
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: SSH and deploy node app
       uses: appleboy/ssh-action@master
@@ -46,8 +46,8 @@ jobs:
         key: ${{ secrets.HOST_PRODUCTION_KEY}}
         port: ${{ secrets.HOST_PRODUCTION_PORT }}
         script: |
-          cd ~/home/services/gateway
-          git pull origin master
+          cd /home/services/gateway
+          git pull
           npm install --production
           npm run build:production
           pm2 restart vidiproject-apps
