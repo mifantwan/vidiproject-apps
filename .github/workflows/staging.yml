@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: npm install and test
       run: |
-        npm install --omit=dev
+        npm install
         npm test
       env:
         CI: true
