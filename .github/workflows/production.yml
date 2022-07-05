@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: npm install and test
       run: |
-        npm install
+        npm install --production
         npm test
       env:
         CI: true

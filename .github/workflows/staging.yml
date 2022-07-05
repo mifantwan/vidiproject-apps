@@ -27,7 +27,7 @@ jobs:
         cache: 'npm'
     - name: npm install and test
       run: |
-        npm install
+        npm install --production
         npm test
       env:
         CI: true
@@ -49,6 +49,6 @@ jobs:
           git pull origin staging
           export NVM_DIR=~/.nvm
           source ~/.nvm/nvm.sh 
-          npm install
+          npm install --production
           npm run build:staging
           pm2 restart gateway-staging
