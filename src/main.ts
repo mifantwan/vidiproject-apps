@@ -1,11 +1,16 @@
 import { NestFactory } from '@nestjs/core';
+import { ValidationPipe } from '@nestjs/common';
 import helmet from 'helmet';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
+  app.useGlobalPipes(new ValidationPipe({
+    whitelist: true,
+    transform: true,
+  }));
   const config = new DocumentBuilder()
     .setTitle('Vidiproject Apps')
     .setDescription('REST API Docs')
@@ -13,9 +18,9 @@ async function bootstrap() {
     .addTag('api')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('docs', app, document);
-
+  SwaggerModule.setup('docs/api', app, document);
   app.enableCors();
+  app.use(helmet());
   await app.listen(process.env.HOST_PORT);
 }
 bootstrap();
